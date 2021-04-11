@@ -6,17 +6,3 @@
 .heading {
 	font-size: 5rem;
 }
-
-.navbar {
-	list-style-type: none;
-	display: flex;
-	justify-content: center;
-	margin-top: 1rem;
-	gap: 1rem;
-}
-
-.nav_item {
-	padding: 0.5rem 1rem;
-	background-color: var(--background-color-dark);
-	border-radius: 0.5rem;
-}

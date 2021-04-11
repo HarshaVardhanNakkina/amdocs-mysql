@@ -2,17 +2,26 @@
 
 <div class="list_container">
 	<ul class="list_header">
-		<li>Name</li>
-		<li>Job Title</li>
-		<li>Salary</li>
-		<li>Department</li>
+		<li class="blank"></li>
+		<li class="header_name">Name</li>
+		<li class="header_name">Job Title</li>
+		<li class="header_name">Salary</li>
+		<li class="header_name">Department</li>
 	</ul>
 	<% it.results.forEach(function(emp) { %>
 	<ul class="list_items">
-		<li><%= emp.name %></li>
-		<li><%= emp.job %></li>
-		<li><%= emp.salary %></li>
-		<li><%= emp.department %></li>
+		<ul class="icons">
+			<li class="icon">
+				<a href=""><img src="/images/trash-2.svg" alt="delete employee" /></a>
+			</li>
+			<li class="icon">
+				<a href="/employees/edit/<%= emp.id %>"><img src="/images/edit.svg" alt="edit employee" /></a>
+			</li>
+		</ul>
+		<li class="item"><%= emp.name %></li>
+		<li class="item"><%= emp.job %></li>
+		<li class="item"><%= emp.salary %></li>
+		<li class="item"><%= emp.department %></li>
 	</ul>
 	<% }) %>
 </div>

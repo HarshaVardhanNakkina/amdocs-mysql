@@ -1,0 +1,27 @@
+<% layout('../layout.html') %>
+
+<form action="/employees/edit/<%= it.id %>" method="POST" class="emp_form">
+	<h1>Edit Employee</h1>
+	<%/* JSON.stringify(it.emp) */%>
+	<label>
+		Employee Name:
+		<input type="text" name="ename" id="ename" value="<%= it.emp.name %>" required />
+	</label>
+	<label>
+		Job Title:
+		<input type="text" name="job" id="job" value="<%= it.emp.job %>" required />
+	</label>
+	<label>
+		Salary:
+		<input type="number" name="sal" id="sal" value="<%= it.emp.sal %>" required />
+	</label>
+	<label>
+		Department:
+		<select name="dept" id="dept" required>
+			<% it.departments.forEach(function(dept) { %>
+			<option value="<%= dept.deptid %>" <%= it.emp.deptid == dept.deptid ? 'selected' : '' %>><%= dept.dname %></option>
+			<% }) %>
+		</select>
+	</label>
+	<button type="submit" class="btn_submit">Update Employee</button>
+</form>
