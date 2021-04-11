@@ -1,0 +1,18 @@
+<% layout('../layout.html') %>
+
+<div class="list_container">
+	<ul class="list_header">
+		<li>Name</li>
+		<li>Job Title</li>
+		<li>Salary</li>
+		<li>Department</li>
+	</ul>
+	<% it.results.forEach(function(emp) { %>
+	<ul class="list_items">
+		<li><%= emp.name %></li>
+		<li><%= emp.job %></li>
+		<li><%= emp.salary %></li>
+		<li><%= emp.department %></li>
+	</ul>
+	<% }) %>
+</div>

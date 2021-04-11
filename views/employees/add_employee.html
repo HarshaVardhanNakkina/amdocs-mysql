@@ -1,0 +1,27 @@
+<% layout('../layout.html') %>
+
+<form action="/employees/add" method="post" class="emp_form">
+	<h1>Create A New Employee</h1>
+	<label>
+		Employee Name:
+		<input type="text" name="ename" id="ename" required />
+	</label>
+	<label>
+		Job Title:
+		<input type="text" name="job" id="job" required />
+	</label>
+	<label>
+		Salary:
+		<input type="number" name="sal" id="sal" required />
+	</label>
+	<label>
+		Department:
+		<select name="dept" id="dept" required>
+			<option value="" selected disabled>select an option</option>
+			<% it.departments.forEach(function(dept) { %>
+			<option value="<%= dept.deptid %>"><%= dept.dname %></option>
+			<% }) %>
+		</select>
+	</label>
+	<button type="submit" class="btn_submit">Add Employee</button>
+</form>
