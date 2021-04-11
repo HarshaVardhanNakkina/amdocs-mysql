@@ -4,15 +4,18 @@
 	"private": true,
 	"scripts": {
 		"sass": "sass --watch public/scss/index.scss:public/stylesheets/style.css",
+		"dev:unix": "DEBUG=amdocs-mysql:* nodemon -r dotenv/config --trace-warnings ./bin/www",
 		"dev:windows": "SET DEBUG=amdocs-mysql:* & nodemon -r dotenv/config --trace-warnings ./bin/www",
-		"start": "node ./bin/www"
+		"start": "NODE_ENV=production node ./bin/www"
 	},
 	"dependencies": {
+		"compression": "^1.7.4",
 		"cookie-parser": "~1.4.4",
 		"debug": "~2.6.9",
 		"dotenv": "^8.2.0",
 		"eta": "^1.12.1",
 		"express": "~4.16.1",
+		"helmet": "^4.4.1",
 		"morgan": "~1.9.1",
 		"mysql2": "^2.2.5",
 		"sass": "^1.32.8",
