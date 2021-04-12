@@ -56,7 +56,7 @@ async function getDepartments() {
 router.get('/add', async function (req, res, next) {
 	try {
 		const { err, results: departments, fields } = await getDepartments()
-		res.render('employees/add_employee.html', { departments })
+		res.render('employees/add_employee.html', { departments, title: 'Add Employee' })
 	} catch (error) {
 		next(error)
 	}
@@ -87,7 +87,12 @@ router.get('/edit/:id', async function (req, res, next) {
 	const deps = await getDepartments()
 	if (deps.err) next(deps.err)
 
-	res.render('employees/edit_employee.html', { id, emp: emp.results[0], departments: deps.results })
+	res.render('employees/edit_employee.html', {
+		id,
+		emp: emp.results[0],
+		departments: deps.results,
+		title: 'Update Employee'
+	})
 })
 
 router.post('/edit/:id', async function (req, res, next) {
@@ -108,6 +113,22 @@ router.post('/edit/:id', async function (req, res, next) {
 		)
 
 		res.redirect('/employees')
+	} catch (error) {
+		next(error)
+	}
+})
+
+router.get('/dept_10_sal_5000', async function (req, res, next) {
+	try {
+		const [results, fields] = await pool.execute(
+			`
+            SELECT empid 'id', ename 'name', job, sal 'salary', deptid, dname 'department'
+            FROM employee NATURAL JOIN dept
+            WHERE deptid = 10 AND sal < 5000
+            `
+		)
+
+		res.render('employees/index.html', { results, title: 'Employees List' })
 	} catch (error) {
 		next(error)
 	}
