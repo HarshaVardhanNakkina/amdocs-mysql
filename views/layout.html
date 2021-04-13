@@ -17,6 +17,7 @@
 				<li class="nav_item"><a href="/user/signup">Signup</a></li>
 				<% } else { %>
 
+				<li class="nav_item"><a href="/user/profile/<%= it.username %>"><%= it.username %></a></li>
 				<li class="nav_item"><a href="/user/logout">Logout</a></li>
 				<% } %>
 			</ul>

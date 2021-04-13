@@ -15,7 +15,12 @@ router.get('/', async function (req, res, next) {
             `
 		)
 
-		res.render('employees/index.html', { results, title: 'Employees List', loggedIn: req.session.loggedIn ?? false })
+		res.render('employees/index.html', {
+			results,
+			title: 'Employees List',
+			loggedIn: req.session.loggedIn ?? false,
+			username: req.session.username
+		})
 	} catch (error) {
 		next(error)
 	}
