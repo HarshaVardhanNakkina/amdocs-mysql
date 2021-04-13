@@ -56,7 +56,12 @@ async function getDepartments() {
 router.get('/add', async function (req, res, next) {
 	try {
 		const { err, results: departments, fields } = await getDepartments()
-		res.render('employees/add_employee.html', { departments, title: 'Add Employee', loggedIn: req.session.loggedIn })
+		res.render('employees/add_employee.html', {
+			departments,
+			title: 'Add Employee',
+			loggedIn: req.session.loggedIn,
+			username: req.session.username
+		})
 	} catch (error) {
 		next(error)
 	}
@@ -92,7 +97,8 @@ router.get('/edit/:id', async function (req, res, next) {
 		emp: emp.results[0],
 		departments: deps.results,
 		title: 'Update Employee',
-		loggedIn: req.session.loggedIn
+		loggedIn: req.session.loggedIn,
+		username: req.session.username
 	})
 })
 

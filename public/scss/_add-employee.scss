@@ -1,3 +1,10 @@
+.multiple_forms {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+}
 .emp_form {
 	background: var(--background-color);
 	border-radius: 1rem;

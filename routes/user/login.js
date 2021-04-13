@@ -14,7 +14,9 @@ router.get('/', async function (req, res, next) {
 		: null
 	res.render('user/login.html', {
 		message,
-		loggedIn: req.session.loggedIn
+		title: 'Login',
+		loggedIn: req.session.loggedIn,
+		username: req.session.username
 	})
 })
 
@@ -31,26 +33,37 @@ router.post('/', async function (req, res, next) {
 		)
 		if (results.length == 0) {
 			res.render('user/login.html', {
-				type: 'error',
-				text: 'User Not Found'
+				user: req.body,
+				message: {
+					type: 'error',
+					text: 'Check Credentials'
+				},
+				title: 'Login',
+				loggedIn: req.session.loggedIn,
+				username: req.session.username
 			})
+			return
 		}
-		const isPasswordValid = bcrypt.compare(password, results[0].password)
-		if (!isPasswordValid) {
+		const match = await bcrypt.compare(password, results[0].password)
+		if (!match) {
 			res.render('user/login.html', {
-				type: 'error',
-				text: 'User Not Found'
+				user: req.body,
+				message: {
+					type: 'error',
+					text: 'Check Credentials'
+				},
+				title: 'Login',
+				loggedIn: req.session.loggedIn,
+				username: req.session.username
 			})
+			return
 		}
 		req.session.loggedIn = true
 		req.session.username = results[0].username
 		res.redirect('/')
 	} catch (error) {
 		console.error(error)
-		res.render('user/login.html', {
-			type: 'error',
-			text: 'Internal Server Error, Try again'
-		})
+		next(err)
 	}
 })
 

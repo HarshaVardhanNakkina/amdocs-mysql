@@ -6,7 +6,7 @@ router.get('/', async function (req, res, next) {
 	req.session.destroy(err => {
 		console.error(err)
 	})
-	res.redirect('/')
+	res.redirect('/user/login')
 })
 
 module.exports = router

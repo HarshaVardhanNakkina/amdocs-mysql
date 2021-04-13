@@ -21,7 +21,9 @@ const userSchema = Joi.object({
 
 router.get('/', async function (req, res, next) {
 	res.render('user/signup.html', {
-		loggedIn: req.session.loggedIn
+		title: 'Signup',
+		loggedIn: req.session.loggedIn,
+		username: req.session.username
 	})
 })
 
@@ -29,13 +31,8 @@ router.post('/', async function (req, res, next) {
 	try {
 		const value = await userSchema.validateAsync(req.body)
 	} catch (err) {
-		res.render('user/signup.html', {
-			user: req.body,
-			message: {
-				type: 'error',
-				text: err.message
-			}
-		})
+		console.error(error)
+		next(err)
 	}
 	const { username, password } = req.body
 	const [results, fields] = await pool.execute(
@@ -52,8 +49,12 @@ router.post('/', async function (req, res, next) {
 			message: {
 				type: 'error',
 				text: 'Username is not available'
-			}
+			},
+			title: 'Signup',
+			loggedIn: req.session.loggedIn,
+			username: req.session.username
 		})
+		return
 	}
 
 	try {
@@ -68,13 +69,8 @@ router.post('/', async function (req, res, next) {
 			[username, passwdHash]
 		)
 	} catch (error) {
-		res.render('user/signup.html', {
-			user: req.body,
-			message: {
-				type: 'error',
-				text: 'Interval Server Error, Try again'
-			}
-		})
+		console.error(error)
+		next(error)
 	}
 	req.flash('message', 'Signup successful, please login')
 	res.redirect('/user/login')

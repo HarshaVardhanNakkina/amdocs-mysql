@@ -1,0 +1,31 @@
+<% layout('../layout.html') %>
+
+<div class="multiple_forms">
+	<form action="/user/profile/<%= it.old_username ?? it.username %>/update" method="post" class="emp_form">
+		<h1>Update Username</h1>
+		<% if (it.message && it.message?.form != 'password') { %>
+		<p class="<%= it.message.type === 'error' ? 'error' : 'success' %>"><%= it.message.text %></p>
+		<% } %>
+		<label>
+			Username:
+			<input type="text" name="new_username" id="new_username" value="<%= it.new_username ?? it.username %>" required />
+		</label>
+		<button type="submit" class="btn_submit">Update</button>
+	</form>
+
+	<form action="/user/profile/<%= it.username %>/change_password" method="post" class="emp_form">
+		<h1>Change Password</h1>
+		<% if (it.message) { %>
+		<p class="<%= it.message.type === 'error' ? 'error' : 'success' %>"><%= it.message.text %></p>
+		<% } %>
+		<label>
+			Current Password:
+			<input type="password" name="cur_password" id="cur_password" />
+		</label>
+		<label>
+			New Password:
+			<input type="password" name="new_password" id="new_password" />
+		</label>
+		<button type="submit" class="btn_submit">Update</button>
+	</form>
+</div>
