@@ -2,6 +2,9 @@
 
 <form action="/employees/add" method="post" class="emp_form">
 	<h1>Create A New Employee</h1>
+	<% if (it.message) { %>
+	<p class="<%= it.message.type === 'error' ? 'error' : 'success' %>"><%= it.message.text %></p>
+	<% } %>
 	<label>
 		Employee Name:
 		<input type="text" name="ename" id="ename" required />

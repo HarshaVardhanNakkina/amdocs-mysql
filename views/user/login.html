@@ -1,0 +1,17 @@
+<% layout('../layout.html') %>
+
+<form action="/user/login" method="post" class="emp_form">
+	<h1>Login</h1>
+	<% if (it.message) { %>
+	<p class="<%= it.message.type === 'error' ? 'error' : 'success' %>"><%= it.message.text %></p>
+	<% } %>
+	<label>
+		UserName:
+		<input type="text" name="username" id="username" value="<%= it?.user?.username ?? '' %>" required />
+	</label>
+	<label>
+		Password:
+		<input type="password" name="password" id="password" value="<%= it?.user?.password ?? '' %>" required />
+	</label>
+	<button type="submit" class="btn_submit">Login</button>
+</form>

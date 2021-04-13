@@ -6,22 +6,28 @@
 		"sass": "sass --watch public/scss/index.scss:public/stylesheets/style.css",
 		"dev:unix": "DEBUG=amdocs-mysql:* nodemon -r dotenv/config --trace-warnings ./bin/www",
 		"dev:windows": "SET DEBUG=amdocs-mysql:* & nodemon -r dotenv/config --trace-warnings ./bin/www",
-		"start": "NODE_ENV=production node ./bin/www"
+		"start": "NODE_ENV=production node ./bin/www",
+		"dev": "browser-sync start --config bsconfig.js"
 	},
 	"dependencies": {
+		"bcrypt": "^5.0.1",
 		"compression": "^1.7.4",
+		"connect-flash": "^0.1.1",
 		"cookie-parser": "~1.4.4",
 		"debug": "~2.6.9",
 		"dotenv": "^8.2.0",
 		"eta": "^1.12.1",
 		"express": "~4.16.1",
+		"express-session": "^1.17.1",
 		"helmet": "^4.4.1",
+		"joi": "^17.4.0",
 		"morgan": "~1.9.1",
 		"mysql2": "^2.2.5",
-		"sass": "^1.32.8",
 		"supports-color": "^8.1.1"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.7"
+		"browser-sync": "^2.26.14",
+		"nodemon": "^2.0.7",
+		"sass": "^1.32.8"
 	}
 }

@@ -56,7 +56,7 @@ async function getDepartments() {
 router.get('/add', async function (req, res, next) {
 	try {
 		const { err, results: departments, fields } = await getDepartments()
-		res.render('employees/add_employee.html', { departments, title: 'Add Employee' })
+		res.render('employees/add_employee.html', { departments, title: 'Add Employee', loggedIn: req.session.loggedIn })
 	} catch (error) {
 		next(error)
 	}
@@ -91,7 +91,8 @@ router.get('/edit/:id', async function (req, res, next) {
 		id,
 		emp: emp.results[0],
 		departments: deps.results,
-		title: 'Update Employee'
+		title: 'Update Employee',
+		loggedIn: req.session.loggedIn
 	})
 })
 
@@ -128,7 +129,7 @@ router.get('/dept_10_sal_5000', async function (req, res, next) {
             `
 		)
 
-		res.render('employees/index.html', { results, title: 'Employees List' })
+		res.render('employees/index.html', { results, title: 'Employees List', loggedIn: req.session.loggedIn })
 	} catch (error) {
 		next(error)
 	}

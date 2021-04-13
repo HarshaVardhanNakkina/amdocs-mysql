@@ -134,8 +134,16 @@ body {
   gap: 1.25rem;
   padding: 2rem;
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 560px;
   width: 100%;
+}
+.emp_form .error {
+  text-align: center;
+  color: red;
+}
+.emp_form .success {
+  text-align: center;
+  color: green;
 }
 .emp_form h1 {
   text-align: center;
